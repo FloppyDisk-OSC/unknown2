@@ -4,36 +4,11 @@
 <meta charset="UTF-8">
 <title>Locked</title>
 <style>
-  body {
-    background: #111;
-    color: #fff;
-    font-family: monospace;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  .box {
-    background: #222;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-  }
-  input, button {
-    padding: 8px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 5px;
-  }
-  button {
-    background: #0f0;
-    cursor: pointer;
-  }
-  a {
-    color: #0ff;
-    text-decoration: none;
-    font-weight: bold;
-  }
+  body {background:#111;color:#fff;font-family:monospace;display:flex;justify-content:center;align-items:center;height:100vh;}
+  .box {background:#222;padding:20px;border-radius:10px;text-align:center;}
+  input, button {padding:8px;margin-top:10px;border:none;border-radius:5px;}
+  button {background:#0f0;cursor:pointer;}
+  a {color:#0ff;text-decoration:none;font-weight:bold;}
 </style>
 </head>
 <body>
@@ -47,29 +22,20 @@
 </div>
 
 <script>
-async function h(t){
-  const e=new TextEncoder().encode(t);
-  const b=await crypto.subtle.digest("SHA-256",e);
-  return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,"0")).join("");
-}
+function go(){
+  const v = document.getElementById("p").value;
+  const p1 = "8542";
+  const p2 = "FCB";
+  const p3 = "aPM4";
 
-const _a="5e8f";
-const _b="1c0a7d9c";
-const _c="0c3d2dbe5b7a";
-const _d="c8a9f0c2d7e3a6b4f1c9e8d7b6a5c4";
-const full=_a+_b+_c+_d;
+  const correct = p1 + p2 + p3;
 
-const secretLink="https://flat.io/score/69434db11106bb7ffc5819a7";
-
-async function go(){
-  const v=document.getElementById("p").value;
-  const r=await h(v);
-
-  if(r===full){
-    document.body.innerHTML = `<h1>Granted.</h1>
-                               <p><a href="${secretLink}" target="_blank">Click me!</a></p>`;
+  if(v === correct){
+    const link = "https://flat.io/score/69434db11106bb7ffc5819a7";
+    document.body.innerHTML = `<h1>GRANTED</h1>
+                               <p><a href="${link}" target="_blank">Click me!</a></p>`;
   } else {
-    document.getElementById("e").textContent="Wrong.";
+    document.getElementById("e").textContent = "nope.";
   }
 }
 </script>
